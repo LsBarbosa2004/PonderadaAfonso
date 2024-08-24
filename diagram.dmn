@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="definitions_0xactym" name="definitions" namespace="http://camunda.org/schema/1.0/dmn" exporter="dmn-js (https://demo.bpmn.io/dmn)" exporterVersion="16.4.0">
+  <decision id="decision_0urqxxg" name="Verificação de documentos">
+    <informationRequirement id="InformationRequirement_0pkymdp">
+      <requiredInput href="#InputData_0s4s5ip" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0tcoa93">
+      <requiredInput href="#InputData_1lm3ohy" />
+    </informationRequirement>
+    <decisionTable id="decisionTable_162e71y" hitPolicy="FIRST">
+      <input id="input1" label="">
+        <inputExpression id="inputExpression1" typeRef="string">
+          <text>"Se os documentos forem validados com sucesso"</text>
+        </inputExpression>
+      </input>
+      <output id="output1" label="Prossegue para a próxima decisão" name="" typeRef="string" />
+      <rule id="DecisionRule_0jysj92">
+        <inputEntry id="UnaryTests_1w3cepu">
+          <text>Se os documentos falharem na verificação </text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_00y7x6e">
+          <text>Bloqueia a transação, e aciona uma revisão manual</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1owbjoq">
+        <inputEntry id="UnaryTests_0ukgerz">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dyit86">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1lm3ohy" name="Documentos de Suporte" />
+  <inputData id="InputData_0s4s5ip" name="Valor da transação" />
+  <decision id="Decision_1ik3vnk" name="Nivel de aprovação necessário">
+    <informationRequirement id="InformationRequirement_18iwfo2">
+      <requiredDecision href="#decision_0urqxxg" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0yh0ls2">
+      <input id="InputClause_0afxfkr" label="Se o valor do pagamento for maior que 50 mil">
+        <inputExpression id="LiteralExpression_1s0zkw2" typeRef="string" />
+      </input>
+      <output id="OutputClause_0psy0kq" label="É necessária a aprovação do CFO e Gerente financeiro (Avança ao bloco 4)" typeRef="string" biodi:width="396" />
+      <rule id="DecisionRule_12lsrhx">
+        <inputEntry id="UnaryTests_18ur0s2">
+          <text>Se o valor for maior que 10 mil, porém menor que 50 mil</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_14ljpb7">
+          <text>É necessária a aprovação do gerente financeiro apenas (Avança ao bloco 5)</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0r77po8">
+        <inputEntry id="UnaryTests_1br66jt">
+          <text>Caso o valor da transação seja menor que 10 mil</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qrgfef">
+          <text>O pagamento é aprovado automaticamente (Avança ao bloco 6)</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_0ccb2yz" name="Bloco 4">
+    <informationRequirement id="InformationRequirement_1aa0o0l">
+      <requiredInput href="#InputData_0c29h6q" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0okz4cx">
+      <requiredInput href="#InputData_1h200wm" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1odwrml">
+      <requiredDecision href="#Decision_1ik3vnk" />
+    </informationRequirement>
+  </decision>
+  <decision id="Decision_0fll37a" name="Bloco 5">
+    <informationRequirement id="InformationRequirement_0ntrszq">
+      <requiredDecision href="#Decision_1ik3vnk" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0m93lek">
+      <requiredInput href="#InputData_1o0t74w" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_10f1ovs">
+      <requiredInput href="#InputData_0n0hpe4" />
+    </informationRequirement>
+  </decision>
+  <decision id="Decision_18page6" name="Bloco 6">
+    <informationRequirement id="InformationRequirement_136amnc">
+      <requiredDecision href="#Decision_1ik3vnk" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_01zo7f5">
+      <requiredInput href="#InputData_10vpsj5" />
+    </informationRequirement>
+  </decision>
+  <inputData id="InputData_0c29h6q" name="Aprovado" />
+  <inputData id="InputData_1h200wm" name="Reprovado" />
+  <inputData id="InputData_1o0t74w" name="Aprovado" />
+  <inputData id="InputData_0n0hpe4" name="Reprovado" />
+  <inputData id="InputData_10vpsj5" name="Aprovado" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_09sqzph">
+      <dmndi:DMNShape id="DMNShape_0bwpi2e" dmnElementRef="decision_0urqxxg">
+        <dc:Bounds height="80" width="180" x="450" y="90" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1nxtupy" dmnElementRef="InputData_1lm3ohy">
+        <dc:Bounds height="45" width="125" x="237" y="77" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_04f79x0" dmnElementRef="InputData_0s4s5ip">
+        <dc:Bounds height="45" width="125" x="237" y="147" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0pouobc" dmnElementRef="InformationRequirement_0pkymdp">
+        <di:waypoint x="362" y="170" />
+        <di:waypoint x="430" y="143" />
+        <di:waypoint x="450" y="143" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1fvbrcu" dmnElementRef="InformationRequirement_0tcoa93">
+        <di:waypoint x="362" y="100" />
+        <di:waypoint x="430" y="117" />
+        <di:waypoint x="450" y="117" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1by1qgj" dmnElementRef="InformationRequirement_18iwfo2">
+        <di:waypoint x="540" y="170" />
+        <di:waypoint x="540" y="290" />
+        <di:waypoint x="540" y="310" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0d03bpt" dmnElementRef="Decision_1ik3vnk">
+        <dc:Bounds height="80" width="180" x="450" y="310" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1bz1zr2" dmnElementRef="Decision_0ccb2yz">
+        <dc:Bounds height="80" width="180" x="180" y="450" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_08r8mmj" dmnElementRef="Decision_0fll37a">
+        <dc:Bounds height="80" width="180" x="450" y="450" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1el54t5" dmnElementRef="Decision_18page6">
+        <dc:Bounds height="80" width="180" x="720" y="450" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0zndjmd" dmnElementRef="InputData_0c29h6q">
+        <dc:Bounds height="45" width="125" x="137" y="687" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1a4rft5" dmnElementRef="InformationRequirement_1aa0o0l">
+        <di:waypoint x="200" y="687" />
+        <di:waypoint x="240" y="550" />
+        <di:waypoint x="240" y="530" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1auzglm" dmnElementRef="InputData_1h200wm">
+        <dc:Bounds height="45" width="125" x="277" y="687" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1f6oo61" dmnElementRef="InformationRequirement_0okz4cx">
+        <di:waypoint x="340" y="687" />
+        <di:waypoint x="300" y="550" />
+        <di:waypoint x="300" y="530" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1521d05" dmnElementRef="InformationRequirement_0ntrszq">
+        <di:waypoint x="540" y="390" />
+        <di:waypoint x="540" y="430" />
+        <di:waypoint x="540" y="450" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1f6lmgq" dmnElementRef="InformationRequirement_1odwrml">
+        <di:waypoint x="540" y="390" />
+        <di:waypoint x="270" y="430" />
+        <di:waypoint x="270" y="450" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_03iar5d" dmnElementRef="InformationRequirement_136amnc">
+        <di:waypoint x="540" y="390" />
+        <di:waypoint x="810" y="430" />
+        <di:waypoint x="810" y="450" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_19k6kgg" dmnElementRef="InputData_1o0t74w">
+        <dc:Bounds height="45" width="125" x="407" y="627" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0cwrbt7" dmnElementRef="InformationRequirement_0m93lek">
+        <di:waypoint x="470" y="627" />
+        <di:waypoint x="510" y="550" />
+        <di:waypoint x="510" y="530" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0cwvib5" dmnElementRef="InputData_0n0hpe4">
+        <dc:Bounds height="45" width="125" x="547" y="627" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1d3qn43" dmnElementRef="InformationRequirement_10f1ovs">
+        <di:waypoint x="610" y="627" />
+        <di:waypoint x="570" y="550" />
+        <di:waypoint x="570" y="530" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_052ncz1" dmnElementRef="InputData_10vpsj5">
+        <dc:Bounds height="45" width="125" x="747" y="687" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1xx2am8" dmnElementRef="InformationRequirement_01zo7f5">
+        <di:waypoint x="810" y="687" />
+        <di:waypoint x="810" y="550" />
+        <di:waypoint x="810" y="530" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
