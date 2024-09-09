@@ -2,7 +2,10 @@
 Para esta atividade, escolhi um plano de cutover da empresa Accenture, que realizou um projeto de atualização do sistema SAP S/4HANA, trocando da versão 1610 para a 1809, este upgrade fez parte de uma estratégia da Accenture para se atualizar de acordo com os avanços da SAP. O plano de cutover deste projeto foi elaborado envolvendo 11 simulações com dados reais para identificar problemas antes da mudança final.  
 fontes:
 https://www.accenture.com/us-en/case-studies/about/drive-transformation-sap
-https://www.accenture.com/us-en/case-studies/about/journey-sap-s4hana https://www.accenture.com/us-en/case-studies/about/accenture-sap-test-automation
+<br>
+https://www.accenture.com/us-en/case-studies/about/journey-sap-s4hana 
+<br>
+https://www.accenture.com/us-en/case-studies/about/accenture-sap-test-automation
 
 ## 2)
  Principais elementos: Foi utilizado a plataforma de automação da Worksoft para os testes do SAP, além disso, realizaram 16 vezes a prática do cutover, para tentar minimizar o tempo e melhorar a precisão, o que foi muito proveitoso, visto que encontraram 92 defeitos de segurança durante os testes. 
