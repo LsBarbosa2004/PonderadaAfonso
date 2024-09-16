@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: https://sql.toad.cz/ -->
+<sql>
+<datatypes db="mysql">
+    <group label="Numeric" color="rgb(245,245,220)">
+        <type label="INT" length="0" sql="INT" quote=""/>
+        <type label="DECIMAL" length="1" sql="DECIMAL" quote=""/>
+    </group>
+    <group label="Character" color="rgb(220,220,220)">
+        <type label="VARCHAR" length="1" sql="VARCHAR" quote="'"/>
+        <type label="CHAR" length="1" sql="CHAR" quote="'"/>
+    </group>
+</datatypes>
+
+<!-- Tabela Clientes -->
+<table name="Clientes">
+    <row name="ClienteID" null="0" autoincrement="0">
+        <datatype>VARCHAR(20)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="Nome" null="1" autoincrement="0">
+        <datatype>VARCHAR(255)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="TipoCliente" null="1" autoincrement="0">
+        <datatype>CHAR(1)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="Telefone" null="1" autoincrement="0">
+        <datatype>VARCHAR(20)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="Celular" null="1" autoincrement="0">
+        <datatype>VARCHAR(20)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="Email" null="1" autoincrement="0">
+        <datatype>VARCHAR(255)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="Status" null="1" autoincrement="0">
+        <datatype>VARCHAR(20)</datatype>
+        <default>'Ativo'</default>
+    </row>
+    <key type="PRIMARY" name="">
+        <part>ClienteID</part>
+    </key>
+</table>
+
+<!-- Tabela EnderecosClientes -->
+<table name="EnderecosClientes">
+    <row name="EnderecoID" null="0" autoincrement="1">
+        <datatype>INT</datatype>
+        <default>AUTO_INCREMENT</default>
+    </row>
+    <row name="ClienteID" null="1" autoincrement="0">
+        <datatype>VARCHAR(20)</datatype>
+        <default>NULL</default>
+        <relation table="Clientes" row="ClienteID"/>
+    </row>
+    <row name="TipoEndereco" null="1" autoincrement="0">
+        <datatype>CHAR(1)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="Logradouro" null="1" autoincrement="0">
+        <datatype>VARCHAR(255)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="Cidade" null="1" autoincrement="0">
+        <datatype>VARCHAR(100)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="Estado" null="1" autoincrement="0">
+        <datatype>VARCHAR(50)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="CEP" null="1" autoincrement="0">
+        <datatype>VARCHAR(20)</datatype>
+        <default>NULL</default>
+    </row>
+    <key type="PRIMARY" name="">
+        <part>EnderecoID</part>
+    </key>
+</table>
+
+<!-- Tabela InformacoesFiscais -->
+<table name="InformacoesFiscais">
+    <row name="FiscalID" null="0" autoincrement="1">
+        <datatype>INT</datatype>
+        <default>AUTO_INCREMENT</default>
+    </row>
+    <row name="ClienteID" null="1" autoincrement="0">
+        <datatype>VARCHAR(20)</datatype>
+        <default>NULL</default>
+        <relation table="Clientes" row="ClienteID"/>
+    </row>
+    <row name="CPF_CNPJ" null="1" autoincrement="0">
+        <datatype>VARCHAR(20)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="RegimeTributario" null="1" autoincrement="0">
+        <datatype>VARCHAR(50)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="CodAtividade" null="1" autoincrement="0">
+        <datatype>VARCHAR(10)</datatype>
+        <default>NULL</default>
+    </row>
+    <key type="PRIMARY" name="">
+        <part>FiscalID</part>
+    </key>
+</table>
+
+<!-- Tabela ContasBancarias -->
+<table name="ContasBancarias">
+    <row name="ContaID" null="0" autoincrement="1">
+        <datatype>INT</datatype>
+        <default>AUTO_INCREMENT</default>
+    </row>
+    <row name="ClienteID" null="1" autoincrement="0">
+        <datatype>VARCHAR(20)</datatype>
+        <default>NULL</default>
+        <relation table="Clientes" row="ClienteID"/>
+    </row>
+    <row name="Banco" null="1" autoincrement="0">
+        <datatype>VARCHAR(100)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="Agencia" null="1" autoincrement="0">
+        <datatype>VARCHAR(20)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="NumeroConta" null="1" autoincrement="0">
+        <datatype>VARCHAR(20)</datatype>
+        <default>NULL</default>
+    </row>
+    <row name="TitularConta" null="1" autoincrement="0">
+        <datatype>VARCHAR(255)</datatype>
+        <default>NULL</default>
+    </row>
+    <key type="PRIMARY" name="">
+        <part>ContaID</part>
+    </key>
+</table>
+
+</sql>
